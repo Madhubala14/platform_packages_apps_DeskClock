@@ -23,6 +23,9 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Build;
+import android.content.pm.PackageManager;
+import android.Manifest;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,6 +107,8 @@ public class DeskClock extends BaseActivity
     /** The current display state of the {@link #mFab}. */
     private FabState mFabState = FabState.SHOWING;
 
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
+
     /** The single floating-action button shared across all tabs in the user interface. */
     private ImageView mFab;
 
@@ -142,6 +147,13 @@ public class DeskClock extends BaseActivity
 
         setContentView(R.layout.desk_clock);
         mSnackbarAnchor = findViewById(R.id.content);
+
+        // Android 13+: notifications (alarm / timer / stopwatch) need a runtime grant.
+        if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(
+                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] {Manifest.permission.POST_NOTIFICATIONS},
+                    REQUEST_POST_NOTIFICATIONS);
+        }
 
         // Configure the toolbar.
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -236,6 +248,7 @@ public class DeskClock extends BaseActivity
         hideFabAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                Utils.tintFab(mFab, R.color.ios_orange);
                 getSelectedDeskClockFragment().onUpdateFab(mFab);
             }
         });
@@ -418,9 +431,11 @@ public class DeskClock extends BaseActivity
                 mUpdateFabOnlyAnimation.start();
                 break;
             case FAB_IMMEDIATE:
+                Utils.tintFab(mFab, R.color.ios_orange);
                 f.onUpdateFab(mFab);
                 break;
             case FAB_MORPH:
+                Utils.tintFab(mFab, R.color.ios_orange);
                 f.onMorphFab(mFab);
                 break;
         }

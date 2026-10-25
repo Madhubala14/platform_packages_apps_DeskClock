@@ -253,6 +253,7 @@ public final class TimerFragment extends DeskClockFragment {
                         fab.setImageResource(R.drawable.ic_play_pause);
                     }
                     fab.setContentDescription(fab.getResources().getString(R.string.timer_stop));
+                    Utils.tintFab(fab, R.color.ios_orange);
                     break;
                 case RESET:
                     if (animate) {
@@ -261,6 +262,7 @@ public final class TimerFragment extends DeskClockFragment {
                         fab.setImageResource(R.drawable.ic_pause_play);
                     }
                     fab.setContentDescription(fab.getResources().getString(R.string.timer_start));
+                    Utils.tintFab(fab, R.color.ios_green);
                     break;
                 case PAUSED:
                     if (animate) {
@@ -269,16 +271,19 @@ public final class TimerFragment extends DeskClockFragment {
                         fab.setImageResource(R.drawable.ic_pause_play);
                     }
                     fab.setContentDescription(fab.getResources().getString(R.string.timer_start));
+                    Utils.tintFab(fab, R.color.ios_green);
                     break;
                 case MISSED:
                 case EXPIRED:
                     fab.setImageResource(R.drawable.ic_stop_white_24dp);
                     fab.setContentDescription(fab.getResources().getString(R.string.timer_stop));
+                    Utils.tintFab(fab, R.color.ios_red);
                     break;
             }
         } else if (mCurrentView == mCreateTimerView) {
             if (mCreateTimerView.hasValidInput()) {
                 fab.setImageResource(R.drawable.ic_start_white_24dp);
+                Utils.tintFab(fab, R.color.ios_green);
                 fab.setContentDescription(fab.getResources().getString(R.string.timer_start));
                 fab.setVisibility(VISIBLE);
             } else {

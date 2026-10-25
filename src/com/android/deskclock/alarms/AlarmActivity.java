@@ -47,6 +47,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.animation.PathInterpolatorCompat;
@@ -150,6 +151,16 @@ public class AlarmActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Back must not dismiss a ringing alarm. Registered through the dispatcher (not the
+        // deprecated onBackPressed) so it still works with predictive back, which is the default
+        // for apps targeting Android 16+/17.
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Intentionally empty: don't allow back to dismiss.
+            }
+        });
 
         setVolumeControlStream(AudioManager.STREAM_ALARM);
         final long instanceId = AlarmInstance.getId(getIntent().getData());
@@ -311,11 +322,6 @@ public class AlarmActivity extends BaseActivity
                 }
         }
         return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Don't allow back to dismiss.
     }
 
     @Override

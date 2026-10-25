@@ -247,6 +247,7 @@ public final class StopwatchFragment extends DeskClockFragment {
                 fab.setImageResource(R.drawable.ic_play_pause);
             }
             fab.setContentDescription(fab.getResources().getString(R.string.sw_pause_button));
+            Utils.tintFab(fab, R.color.ios_red);
         } else {
             if (animate) {
                 fab.setImageResource(R.drawable.ic_pause_play_animation);
@@ -254,6 +255,7 @@ public final class StopwatchFragment extends DeskClockFragment {
                 fab.setImageResource(R.drawable.ic_pause_play);
             }
             fab.setContentDescription(fab.getResources().getString(R.string.sw_start_button));
+            Utils.tintFab(fab, R.color.ios_green);
         }
         fab.setVisibility(VISIBLE);
     }

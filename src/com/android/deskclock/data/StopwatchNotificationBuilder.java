@@ -60,7 +60,7 @@ class StopwatchNotificationBuilder {
                 .putExtra(Events.EXTRA_EVENT_LABEL, eventLabel);
 
         final PendingIntent pendingShowApp = PendingIntent.getService(context, 0, showApp,
-                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         // Compute some values required below.
         final boolean running = stopwatch.isRunning();
@@ -142,7 +142,7 @@ class StopwatchNotificationBuilder {
                         .setPriority(Notification.PRIORITY_LOW)
                         .setSmallIcon(R.drawable.stat_notify_stopwatch)
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                        .setColor(ContextCompat.getColor(context, R.color.default_background));
+                        .setColor(ContextCompat.getColor(context, R.color.notification_accent));
 
         if (Utils.isNOrLater()) {
             notification.setGroup(nm.getStopwatchNotificationGroupKey());

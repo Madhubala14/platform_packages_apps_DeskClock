@@ -152,7 +152,7 @@ class TimerNotificationBuilder {
 
         final PendingIntent pendingShowApp =
                 PendingIntent.getService(context, REQUEST_CODE_UPCOMING, showApp,
-                        PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         final Builder notification = new NotificationCompat.Builder(
                 context, TIMER_MODEL_NOTIFICATION_CHANNEL_ID)
@@ -167,7 +167,7 @@ class TimerNotificationBuilder {
                         .setSortKey(nm.getTimerNotificationSortKey())
                         .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                        .setColor(ContextCompat.getColor(context, R.color.default_background));
+                        .setColor(ContextCompat.getColor(context, R.color.notification_accent));
 
         for (Action action : actions) {
             notification.addAction(action);
@@ -198,7 +198,7 @@ class TimerNotificationBuilder {
                 // Schedule a callback to update the time-sensitive information of the running timer
                 final PendingIntent pi =
                         PendingIntent.getService(context, REQUEST_CODE_UPCOMING, updateNotification,
-                                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT);
+                                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
                 final long nextMinuteChange = remainingTime % MINUTE_IN_MILLIS;
                 final long triggerTime = SystemClock.elapsedRealtime() + nextMinuteChange;
@@ -206,7 +206,7 @@ class TimerNotificationBuilder {
             } else {
                 // Cancel the update notification callback.
                 final PendingIntent pi = PendingIntent.getService(context, 0, updateNotification,
-                        PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_NO_CREATE);
+                        PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);
                 if (pi != null) {
                     am.cancel(pi);
                     pi.cancel();
@@ -281,7 +281,7 @@ class TimerNotificationBuilder {
                         .setSmallIcon(R.drawable.stat_notify_timer)
                         .setFullScreenIntent(pendingFullScreen, true)
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                        .setColor(ContextCompat.getColor(context, R.color.default_background));
+                        .setColor(ContextCompat.getColor(context, R.color.notification_accent));
 
         for (Action action : actions) {
             notification.addAction(action);
@@ -352,7 +352,7 @@ class TimerNotificationBuilder {
 
         final PendingIntent pendingShowApp =
                 PendingIntent.getService(context, REQUEST_CODE_MISSING, showApp,
-                        PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         final Builder notification = new NotificationCompat.Builder(
                 context, TIMER_MODEL_NOTIFICATION_CHANNEL_ID)
@@ -367,7 +367,7 @@ class TimerNotificationBuilder {
                         .setSortKey(nm.getTimerNotificationMissedSortKey())
                         .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                         .addAction(action)
-                        .setColor(ContextCompat.getColor(context, R.color.default_background));
+                        .setColor(ContextCompat.getColor(context, R.color.notification_accent));
 
         if (Utils.isNOrLater()) {
             notification.setCustomContentView(buildChronometer(pname, base, true, stateText))

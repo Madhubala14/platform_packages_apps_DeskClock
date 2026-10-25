@@ -31,12 +31,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import androidx.core.content.ContextCompat;
+import androidx.annotation.ColorRes;
 import androidx.annotation.AnyRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
@@ -273,7 +276,7 @@ public class Utils {
      * @return a PendingIntent that will start a service
      */
     public static PendingIntent pendingServiceIntent(Context context, Intent intent) {
-        return PendingIntent.getService(context, 0, intent, FLAG_UPDATE_CURRENT);
+        return PendingIntent.getService(context, 0, intent, FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     /**
@@ -284,7 +287,7 @@ public class Utils {
      * @return a PendingIntent that will start an activity
      */
     public static PendingIntent pendingActivityIntent(Context context, Intent intent) {
-        return PendingIntent.getActivity(context, 0, intent, FLAG_UPDATE_CURRENT);
+        return PendingIntent.getActivity(context, 0, intent, FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     /**
@@ -631,5 +634,13 @@ public class Utils {
             info.addAction(new AccessibilityActionCompat(
                     AccessibilityActionCompat.ACTION_CLICK.getId(), mLabel));
         }
+    }
+
+    /**
+     * Tints the shared round action button (iOS-style: orange by default, green to start, red to stop).
+     */
+    public static void tintFab(View fab, @ColorRes int colorRes) {
+        fab.setBackgroundTintList(
+                ColorStateList.valueOf(ContextCompat.getColor(fab.getContext(), colorRes)));
     }
 }
