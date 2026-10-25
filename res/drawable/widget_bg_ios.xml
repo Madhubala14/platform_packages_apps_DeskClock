@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- iOS Clock widget card: deep black with a hairline edge so it reads on dark wallpapers. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/ios_black" />
+    <stroke android:width="0.5dp" android:color="@color/ios_separator" />
+    <corners android:radius="@android:dimen/system_app_widget_background_radius" />
+</shape>

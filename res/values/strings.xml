@@ -1077,4 +1077,12 @@
     <string name="stopwatch_channel">Stopwatch</string>
     <string name="timer_channel">Timer</string>
 
+
+    <!-- Widget names / descriptions (iOS-style and Nothing-style clocks). -->
+    <string name="nothing_digital_gadget">Nothing clock</string>
+    <string name="nothing_analog_gadget">Nothing analog clock</string>
+    <string name="ios_analog_widget_desc">Analog clock with a sweeping orange second hand.</string>
+    <string name="ios_world_clock_widget_desc">Time, date, next alarm and your world clocks.</string>
+    <string name="nothing_digital_widget_desc">Dot-matrix time with date and next alarm.</string>
+    <string name="nothing_analog_widget_desc">Dotted analog clock with a red second hand.</string>
 </resources>

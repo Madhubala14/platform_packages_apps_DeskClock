@@ -17,22 +17,27 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- True-black, iOS-Clock-like theme. Android 15+ enforces edge-to-edge, so bars are transparent
+         and the content layouts (fitsSystemWindows) handle the insets. -->
     <style name="Theme.DeskClock" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:colorBackgroundFloating" tools:targetApi="23">
-            ?attr/colorBackgroundFloating
-        </item>
-        <item name="android:navigationBarColor" tools:targetApi="21">?attr/colorPrimaryDark</item>
-        <item name="android:popupTheme" tools:targetApi="21">?attr/popupTheme</item>
-        <item name="android:timePickerStyle" tools:targetApi="21">@style/Widget.TimePicker</item>
-        <item name="android:windowBackground">@color/default_background</item>
+        <item name="android:colorBackgroundFloating">?attr/colorBackgroundFloating</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:popupTheme">?attr/popupTheme</item>
+        <item name="android:timePickerStyle">@style/Widget.TimePicker</item>
+        <item name="android:windowBackground">@color/ios_black</item>
         <item name="android:windowContentOverlay">@null</item>
 
         <!-- Attributes from androidx.appcompat.appcompat -->
-        <item name="colorAccent">#DA4336</item>
-        <item name="colorBackgroundFloating">#303030</item>
-        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorAccent">@color/ios_orange</item>
+        <item name="colorBackgroundFloating">@color/ios_card</item>
+        <item name="colorControlActivated">@color/ios_orange</item>
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
-        <item name="colorPrimaryDark">#66000000</item>
+        <item name="colorPrimaryDark">@color/ios_black</item>
         <item name="imageButtonStyle">@style/Widget.ImageButton</item>
         <item name="popupTheme">@style/ThemeOverlay.Popup</item>
     </style>

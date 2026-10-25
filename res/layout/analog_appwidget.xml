@@ -16,8 +16,11 @@
 
 <AnalogClock xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/analog_appwidget"
-    android:dial="@drawable/appwidget_clock_dial"
-    android:hand_hour="@drawable/appwidget_clock_hour"
-    android:hand_minute="@drawable/appwidget_clock_minute"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg_ios"
+    android:dial="@drawable/ios_clock_dial"
+    android:hand_hour="@drawable/ios_clock_hour"
+    android:hand_minute="@drawable/ios_clock_minute"
+    android:hand_second="@drawable/ios_clock_second"
+    android:padding="6dp" />

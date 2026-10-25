@@ -32,8 +32,30 @@
 
     <color name="clock_gray">#B3FFFFFF</color>
 
-    <color name="default_background">#1A237E</color>
+    <color name="default_background">#000000</color>
 
     <!-- shadowColor for widget text -->
     <color name="widget_shadow_color">#67000000</color>
+
+    <!-- ===== iOS-Clock-style palette (always-dark, true black) ===== -->
+    <color name="ios_black">#FF000000</color>
+    <color name="ios_card">#FF1C1C1E</color>
+    <color name="ios_card_elevated">#FF2C2C2E</color>
+    <color name="ios_separator">#FF38383A</color>
+    <color name="ios_label_secondary">#FF8E8E93</color>
+    <color name="ios_tab_bar">#F0161618</color>
+    <color name="ios_orange">#FFFF9F0A</color>
+    <color name="ios_green">#FF30D158</color>
+    <color name="ios_red">#FFFF453A</color>
+    <color name="ios_green_container">#3330D158</color>
+    <color name="ios_red_container">#33FF453A</color>
+    <color name="ios_orange_container">#33FF9F0A</color>
+    <color name="ios_gray_container">#FF333336</color>
+
+    <!-- ===== Nothing-style accents ===== -->
+    <color name="nothing_red">#FFD71921</color>
+    <color name="nothing_gray">#FF6E6E72</color>
+
+    <!-- Small-icon accent used by notifications. -->
+    <color name="notification_accent">#FFFF9F0A</color>
 </resources>

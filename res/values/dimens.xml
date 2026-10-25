@@ -133,4 +133,8 @@
 
     <!-- KitKat floating action button container height; see -v21 folder for newer platforms. -->
     <dimen name="fab_height">96dp</dimen>
+
+    <!-- iOS bottom tab bar + round action button -->
+    <dimen name="tab_bar_height">56dp</dimen>
+    <dimen name="ios_fab_size">64dp</dimen>
 </resources>

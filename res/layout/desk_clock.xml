@@ -22,9 +22,11 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ios_black"
     android:fitsSystemWindows="true"
     app:statusBarBackground="@null">
 
+    <!-- Top: only the toolbar (overflow / night mode / settings). Tabs now live in the bottom bar. -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,22 +36,9 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             app:contentInsetStart="0dp"
-            tools:ignore="RtlSymmetry">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@android:color/transparent"
-                app:tabMaxWidth="0dp"
-                app:tabMode="fixed"
-                app:tabPaddingEnd="0dp"
-                app:tabPaddingStart="0dp" />
-
-        </androidx.appcompat.widget.Toolbar>
+            tools:ignore="RtlSymmetry" />
 
         <View
             android:id="@+id/tab_hairline"
@@ -64,6 +53,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/tab_bar_height"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.viewpager.widget.ViewPager
@@ -77,10 +67,12 @@
 
     </FrameLayout>
 
+    <!-- Fab + left/right buttons float just above the bottom tab bar. -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/tab_bar_height"
         android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_behavior="com.android.deskclock.widget.toast.SnackbarSlidingBehavior">
@@ -97,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                android:textColor="@color/ios_orange" />
 
         </FrameLayout>
 
@@ -108,7 +101,10 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/fab_margin"
             app:borderWidth="0dp"
-            app:elevation="@dimen/fab_elevation" />
+            app:elevation="0dp"
+            app:fabCustomSize="@dimen/ios_fab_size"
+            app:maxImageSize="28dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.IosFab" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -122,9 +118,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                android:textColor="@color/ios_orange" />
 
         </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- iOS-style bottom tab bar: icon over label, orange when selected. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/ios_black"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/hairline_height"
+            android:background="@color/ios_separator"
+            android:importantForAccessibility="no" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_bar_height"
+            android:background="@color/ios_black"
+            app:tabGravity="fill"
+            app:tabIconTint="@color/tab_tint_color"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabPaddingEnd="0dp"
+            app:tabPaddingStart="0dp"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/ios_orange"
+            app:tabTextAppearance="@style/TextAppearance.Tab"
+            app:tabTextColor="@color/ios_label_secondary" />
 
     </LinearLayout>
 
